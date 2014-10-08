@@ -2,15 +2,6 @@
 BLOG=${BLOG:-~/public_html/blog.html}
 mkdir -p ~/posts
 ${VISUAL:-${EDITOR:-vi}} ~/posts/`date +%Y-%m-%d-%H:%M`
-cat > $BLOG <<EOF
-<html>
-<head>
-<title>Weblog</title>
-</head>
-<body>
-EOF
-find ~/posts -type f |sort -r |xargs -I % -n 1 sh -c '\
-    echo "<h1>`basename %`</h1>\n<div class=\"post\">\n"; \
-    cat % ; \
-    echo "\n</div>\n"' >> $BLOG
+echo "<html><head><title>Weblog</title></head><body>"> $BLOG
+find ~/posts -type f |sort -r |xargs -I % -n 1 sh -c 'echo "<h1>`basename %`</h1>\n<div class=\"post\">\n"; cat % ; echo "\n</div>\n"' >> $BLOG
 echo "</body></html>" >> $BLOG
