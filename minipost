@@ -1,0 +1,4 @@
+# minipost is 100% compatible with post, but it's designed to be
+# transmissible in a single tweet. Because that comes up. Um. Yeah
+
+P=~/posts;mkdir -p $P;cd $P;vi "`date +%Y-%m-%d-%H:%M`";(echo "<html><body>";ls -r|xargs cat;echo "</body></html>")>~/public_html/blog.html
